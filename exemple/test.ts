@@ -4,7 +4,7 @@ const gtfsFetcher = new GtfsRealtimeFetcher();
 
 // Supposons que gtfsFetcher soit déjà initialisé
 gtfsFetcher.update((msg) => {
-  console.log(msg[0].id);
+  console.log(msg[0]);
 });
 
 gtfsFetcher.error((error) => {

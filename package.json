@@ -18,8 +18,9 @@
   },
   "license": "MIT",
   "author": "titoinemb",
-  "types": "./src/gtfsrt-lille.d.ts",
-  "main": "./src/index.ts",
+  "types": "gtfsrt-lille.d.ts",
+  "main": "./dist/index.js",
+  "type": "module",
   "scripts": {
     "link": "npm link gtfsrt-lille",
     "unlink": "npm unlink gtfsrt-lille"

@@ -12,7 +12,7 @@
     "allowSyntheticDefaultImports": true  // Allow default imports from modules without default exports
   },
   "include": [
-    "src/**/*",                 // Include all TypeScript files in src directory
+    "src/**/*", "gtfsrt-lille.d.ts",                 // Include all TypeScript files in src directory
   ],
   "exclude": [
     "node_modules",            // Exclude node_modules
