@@ -1,6 +1,10 @@
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
 
-export default class GtfsRealtimeFetcher {
+/**
+ * permet de recuperer en temp reel tout les deviation, retard etc en temp reel
+ * @return le temp de depart ou une erreur
+ */
+export class GtfsRealtimeFetcher {
   private url: string;
   private updateCallback: ((msg: Item[]) => void) | null;
   private errorCallback: ((error: string) => void) | null;
@@ -9,9 +13,10 @@ export default class GtfsRealtimeFetcher {
   constructor() {
     /**
      * URL officielle des transports de Lille
+     * https://transport.data.gouv.fr/resources/81981#validation-report
      */
     this.url = "https://proxy.transport.data.gouv.fr/resource/ilevia-lille-gtfs-rt";
-    
+
     this.updateCallback = null;
     this.errorCallback = null;
     this.intervalId = null; // Initialisation de l'interval ID
@@ -31,7 +36,7 @@ export default class GtfsRealtimeFetcher {
       if (this.updateCallback) {
         this.updateCallback(feed.entity as Item[]);
       };
-      
+
     } catch (error) {
       if (this.errorCallback) {
         this.errorCallback('Erreur lors de la récupération des données GTFS-RT: ' + error);
@@ -60,4 +65,21 @@ export default class GtfsRealtimeFetcher {
       this.intervalId = null; // Reset de l'interval ID
     };
   };
+};
+
+/**
+ * transforme une date qui ressemble a ca 1764219498 en ca 27 nov. 2025, 05:58
+ * @param time Le timestamp en seconde
+ * @return retourne la date en format date locale courte
+ */
+export function ToRealTime(time: number) {
+  let timestamp = time * 1000; // en millisecondes
+  let date = new Date(timestamp);
+  let options: Intl.DateTimeFormatOptions = {
+    timeZone: 'Europe/Paris',
+    timeStyle: 'short',
+    dateStyle: 'medium'
+  };
+
+  return date.toLocaleString('fr-FR', options);
 };

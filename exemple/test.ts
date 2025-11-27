@@ -1,10 +1,10 @@
-import GtfsRealtimeFetcher from 'gtfsrt-lille';
+import { GtfsRealtimeFetcher, ToRealTime } from '../src/index.ts';
 
 const gtfsFetcher = new GtfsRealtimeFetcher();
 
 // Supposons que gtfsFetcher soit déjà initialisé
 gtfsFetcher.update((msg) => {
-  console.log(msg[0]);
+  console.log(ToRealTime(msg[10].tripUpdate.timestamp.low));
 });
 
 gtfsFetcher.error((error) => {

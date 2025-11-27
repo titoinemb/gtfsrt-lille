@@ -29,7 +29,7 @@ type Item = {
 };
 
 declare module 'gtfsrt-lille' {
-  export default class GtfsRealtimeFetcher {
+  export class GtfsRealtimeFetcher {
     constructor();
 
     /**
@@ -54,5 +54,7 @@ declare module 'gtfsrt-lille' {
      * Arrête la récupération des données.
      */
     stop(): void;
-  }
-}
+  };
+
+  export function ToRealTime(time: number): string;
+};
