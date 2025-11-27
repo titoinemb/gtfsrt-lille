@@ -1,0 +1,34 @@
+{
+  "name": "gtfsrt-lille",
+  "version": "1.0.0",
+  "description": "un simple module pour avoir directement le gtfs-rt des transports lille",
+  "keywords": [
+    "ville",
+    "france",
+    "gtfsrt",
+    "gtfs-rt"
+  ],
+  "homepage": "https://github.com/titoinemb/gtfsrt-lille#readme",
+  "bugs": {
+    "url": "https://github.com/titoinemb/gtfsrt-lille/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titoinemb/gtfsrt-lille.git"
+  },
+  "license": "MIT",
+  "author": "titoinemb",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": ""
+  },
+  "dependencies": {
+    "gtfs-realtime-bindings": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
