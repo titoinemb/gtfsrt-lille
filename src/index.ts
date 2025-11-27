@@ -68,19 +68,6 @@ export class GtfsRealtimeFetcher {
 };
 
 /**
- * avec l'api officiel du gouv permet de transformer un id en un nom
- * @param id l'id de la station
- * @return le nom de une station ou une erreur
- */
-export function IdToStationName(id: number) {
-  try {
-
-  } catch(error) {
-    throw(error);
-  };
-};
-
-/**
  * transforme une date qui ressemble a ca 1764219498 en ca 27 nov. 2025, 05:58
  * @param time Le timestamp en seconde
  * @return retourne la date en format date locale courte
@@ -95,4 +82,17 @@ export function ToRealTime(time: number) {
   };
 
   return date.toLocaleString('fr-FR', options);
+};
+
+/**
+ * avec l'api officiel du gouv permet de transformer un id en un nom
+ * @param id l'id de la station
+ * @return le nom de une station ou une erreur
+ */
+export function IdToStationName(id: number) {
+  try {
+
+  } catch(error) {
+    throw(error);
+  };
 };
