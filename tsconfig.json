@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",        // Specify ECMAScript target version
-    "module": "nodenext",        // Use ESNext for module resolution
+    "module": "nodenext",
     "outDir": "./dist",        // Output directory for compiled files
     "rootDir": "./src",        // Root directory of source files
     "strict": true,            // Enable strict type checking options
@@ -12,7 +12,8 @@
     "allowSyntheticDefaultImports": true  // Allow default imports from modules without default exports
   },
   "include": [
-    "src/**/*", "gtfsrt-lille.d.ts",                 // Include all TypeScript files in src directory
+    "src/**/*",
+    "gtfsrt-lille.d.ts",
   ],
   "exclude": [
     "node_modules",            // Exclude node_modules

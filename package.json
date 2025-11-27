@@ -23,7 +23,9 @@
   "type": "module",
   "scripts": {
     "link": "npm link gtfsrt-lille",
-    "unlink": "npm unlink gtfsrt-lille"
+    "unlink": "npm unlink gtfsrt-lille",
+    "build": "",
+    "test": ""
   },
   "dependencies": {
     "gtfs-realtime-bindings": "^1.1.1"
