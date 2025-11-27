@@ -2,7 +2,7 @@ import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
 
 export default class GtfsRealtimeFetcher {
   private url: string;
-  private updateCallback: ((msg: any) => void) | null;
+  private updateCallback: ((msg: Item[]) => void) | null;
   private errorCallback: ((error: string) => void) | null;
   private intervalId: NodeJS.Timeout | null;
 
@@ -28,11 +28,9 @@ export default class GtfsRealtimeFetcher {
       const arrayBuffer = await response.arrayBuffer();
       const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(arrayBuffer));
 
-      feed.entity.forEach((entity) => {
-        if (entity.tripUpdate && this.updateCallback) {
-          this.updateCallback(entity.tripUpdate);
-        };
-      });
+      if (this.updateCallback) {
+        this.updateCallback(feed.entity as Item[]);
+      };
       
     } catch (error) {
       if (this.errorCallback) {

@@ -18,10 +18,11 @@
   },
   "license": "MIT",
   "author": "titoinemb",
-  "type": "module",
-  "main": "./dist/index.js",
+  "types": "./src/gtfsrt-lille.d.ts",
+  "main": "./src/index.ts",
   "scripts": {
-    "test": ""
+    "link": "npm link gtfsrt-lille",
+    "unlink": "npm unlink gtfsrt-lille"
   },
   "dependencies": {
     "gtfs-realtime-bindings": "^1.1.1"

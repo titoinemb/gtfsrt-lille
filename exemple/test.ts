@@ -1,9 +1,10 @@
-import GtfsRealtimeFetcher from "../src/index.ts"; // Ajustez le chemin au besoin
+import GtfsRealtimeFetcher from 'gtfsrt-lille';
 
 const gtfsFetcher = new GtfsRealtimeFetcher();
 
+// Supposons que gtfsFetcher soit déjà initialisé
 gtfsFetcher.update((msg) => {
-  console.log("Les données qui sont mises à jour du GTFS-RT:", msg);
+  console.log(msg[0].id);
 });
 
 gtfsFetcher.error((error) => {
