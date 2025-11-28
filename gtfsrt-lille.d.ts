@@ -90,5 +90,5 @@ declare module 'gtfsrt-lille' {
    * @param id l'id de la station
    * @return le nom de une station ou une erreur
    */
-  export function IdToStationInfo(id: string): any;
+  export function IdToStationInfo(id: string): Promise<Info | Error>;
 };

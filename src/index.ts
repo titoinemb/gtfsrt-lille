@@ -72,7 +72,7 @@ export class GtfsRealtimeFetcher {
  */
 export function ToRealTime(time: number) {
   let timestamp = time * 1000; // en millisecondes
-  let date = new Date(timestamp);
+  let date      = new Date(timestamp);
   let options: Intl.DateTimeFormatOptions = {
     timeZone: 'Europe/Paris',
     timeStyle: 'short',
@@ -86,7 +86,7 @@ export function ToRealTime(time: number) {
  * @param id l'id de la station
  * @return le nom de une station ou une erreur
  */
-export async function IdToStationInfo(id: string) {
+export async function IdToStationInfo(id: string): Promise<Info | Error> {
   try {
     /**
      * URL officielle des transports de Lille
@@ -100,8 +100,13 @@ export async function IdToStationInfo(id: string) {
 
     let responseJson: any     = await response.json();
     let listStops: Info[]     = await responseJson.records;
+    let stop                  = listStops.find(stop => stop.stop_id === id);
 
-    return await listStops.find(stop => stop.stop_id === id);
+    if (!stop) {
+      return new Error(`No stop found for ID: ${id}`);
+    };
+
+    return stop;
   } catch(error) {
     throw new Error(`Erreur: ${error}`);
   };
