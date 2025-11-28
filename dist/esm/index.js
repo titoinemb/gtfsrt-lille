@@ -1,9 +1,17 @@
-import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GtfsRealtimeFetcher = void 0;
+exports.ToRealTime = ToRealTime;
+exports.IdToStationInfo = IdToStationInfo;
+const gtfs_realtime_bindings_1 = __importDefault(require("gtfs-realtime-bindings"));
 /**
  * permet de recuperer en temp reel tout les deviation, retard etc en temp reel
  * @return le temp de depart ou une erreur
  */
-export class GtfsRealtimeFetcher {
+class GtfsRealtimeFetcher {
     constructor() {
         /**
          * URL officielle des transports de Lille
@@ -23,7 +31,7 @@ export class GtfsRealtimeFetcher {
             }
             ;
             let arrayBuffer = await response.arrayBuffer();
-            let feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(arrayBuffer));
+            let feed = gtfs_realtime_bindings_1.default.transit_realtime.FeedMessage.decode(new Uint8Array(arrayBuffer));
             if (this.updateCallback) {
                 this.updateCallback(feed.entity);
             }
@@ -61,13 +69,14 @@ export class GtfsRealtimeFetcher {
     }
     ;
 }
+exports.GtfsRealtimeFetcher = GtfsRealtimeFetcher;
 ;
 /**
  * transforme une date qui ressemble a ca 1764219498 en ca 27 nov. 2025, 05:58
  * @param time Le timestamp en seconde
  * @return retourne la date en format date locale courte
  */
-export function ToRealTime(time) {
+function ToRealTime(time) {
     let timestamp = time * 1000; // en millisecondes
     let date = new Date(timestamp);
     let options = {
@@ -83,7 +92,7 @@ export function ToRealTime(time) {
  * @param id l'id de la station
  * @return le nom de une station ou une erreur
  */
-export async function IdToStationInfo(id) {
+async function IdToStationInfo(id) {
     try {
         /**
          * URL officielle des transports de Lille
