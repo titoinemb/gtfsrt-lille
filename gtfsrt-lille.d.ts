@@ -1,3 +1,6 @@
+/**
+ * c'est la list des arret de un objet dans le gtfs-rt
+ */
 type StopTimeUpdate = {
   stopSequence: number;
   departure: {
@@ -10,7 +13,9 @@ type StopTimeUpdate = {
   stopId: string,
   scheduleRelationship: number
 };
-
+/**
+ * item qui ce retourve dans le gtfs-rt
+ */
 type Item = {
   id: string;
   tripUpdate: {
@@ -27,7 +32,9 @@ type Item = {
     stopTimeUpdate: StopTimeUpdate[];
   };
 };
-
+/**
+ * list d'information de un item du gtfs-rt qui est trouvable avec le id
+ */
 type Info = {
   "@id": string;
   stop_id: string;
@@ -41,7 +48,9 @@ type Info = {
   wheelchair_boarding: string;
   commune: string;
 };
-
+/**
+ * declaration du module "gtfsrt-lille"
+ */
 declare module 'gtfsrt-lille' {
   /**
    * permet de recuperer en temp reel tout les deviation, retard etc en temp reel

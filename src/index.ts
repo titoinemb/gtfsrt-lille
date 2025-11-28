@@ -1,5 +1,4 @@
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings';
-
 /**
  * permet de recuperer en temp reel tout les deviation, retard etc en temp reel
  * @return le temp de depart ou une erreur
@@ -24,14 +23,14 @@ export class GtfsRealtimeFetcher {
 
   private async fetchData(): Promise<void> {
     try {
-      const response = await fetch(this.url);
+      let response = await fetch(this.url);
 
       if (!response.ok) {
         throw new Error(`Erreur: ${response.status} ${response.statusText}`);
       };
 
-      const arrayBuffer = await response.arrayBuffer();
-      const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(arrayBuffer));
+      let arrayBuffer = await response.arrayBuffer();
+      let feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(arrayBuffer));
 
       if (this.updateCallback) {
         this.updateCallback(feed.entity as Item[]);
@@ -66,7 +65,6 @@ export class GtfsRealtimeFetcher {
     };
   };
 };
-
 /**
  * transforme une date qui ressemble a ca 1764219498 en ca 27 nov. 2025, 05:58
  * @param time Le timestamp en seconde
@@ -83,7 +81,6 @@ export function ToRealTime(time: number) {
 
   return date.toLocaleString('fr-FR', options);
 };
-
 /**
  * avec l'api officiel du gouv permet de recuperer les informations de une station avec son id
  * @param id l'id de la station
@@ -91,6 +88,10 @@ export function ToRealTime(time: number) {
  */
 export async function IdToStationInfo(id: string) {
   try {
+    /**
+     * URL officielle des transports de Lille
+     * https://data.lillemetropole.fr/catalogue/dataset/e353a6ee-6d5c-4f6c-8a10-9b43c4f41a61
+     */
     let response = await fetch("https://data.lillemetropole.fr/data/ogcapi/collections/ilevia:arret_point/items?f=json&limit=-1");
 
     if (!response.ok) {
