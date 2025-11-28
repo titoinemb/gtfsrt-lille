@@ -1,6 +1,6 @@
 {
   "name": "gtfsrt-lille",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "un simple module pour avoir directement le gtfs-rt des transports lille",
   "keywords": [
     "ville",
