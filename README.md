@@ -4,26 +4,67 @@ un simple module pour avoir directement les informations du gtfs-rt des transpor
 
 [information sur le gtfs-rt](https://developers.google.com/transit/gtfs/reference/)
 </br>
-[informations sur ilévia (le gtfs-rt du gouv)](https://www.data.gouv.fr/datasets/localisation-des-arrets-ilevia-bus-metro-et-tram-gtfs-pictogrammes-du-reseau-ilevia-2//)
+[informations sur ilévia (le gtfs-rt du gouv)](https://www.data.gouv.fr/datasets/localisation-des-arrets-ilevia-bus-metro-et-tram-gtfs-pictogrammes-du-reseau-ilevia-2/)
 
 ## instalation
 ```sh
 npm i gtfsrt-lille
 ```
 
-## code d'exemple
+## documentation
+
+### imporatation du module
 ```ts
-import GtfsRealtimeFetcher from "gtfsrt-lille";
+// en TypeScript
 
+/**
+ * ajouter comme ca si vous voulez gtfsrtLille.<nom de la function>
+*/
+import gtfsrtLille from "gtfsrt-lille";
+/**
+ * ajouter comme ca si vous voulez <nom de la function>
+*/
+import { GtfsRealtimeFetcher, IdToStationInfo, ToRealTime } from "gtfsrt-lille";
+
+// en JavaScript
+
+/**
+ * ajouter comme ca si vous voulez gtfsrtLille.<nom de la function>
+*/
+const gtfsrtLille = require("gtfsrt-lille");
+/**
+ * ajouter comme ca si vous voulez <nom de la function>
+*/
+const { GtfsRealtimeFetcher, IdToStationInfo, ToRealTime } = require("gtfsrt-lille");
+```
+### utilisation de **GtfsRealtimeFetcher**
+```ts
+/**
+ * creation de une variable, constante ou let
+*/
 const gtfsFetcher = new GtfsRealtimeFetcher();
-
-gtfsFetcher.update((msg) => {
-  console.log("Les données qui sont mises à jour du GTFS-RT:", msg);
-});
-
+/**
+ * function error
+ * pour faire une action si il y a une erreur
+*/
 gtfsFetcher.error((error) => {
-  console.error(error);
+  // ton code
 });
-
-gtfsFetcher.start(3000); // 30 seconde par defaut
+/**
+ * function update
+ * pour faire une action quand il y a une mis a jour du fichier gtfsrt
+*/
+gtfsFetcher.update((data) => {
+  // ton code
+});
+/**
+ * function stop
+ * pour arreter le polling du fichier gtfs-rt
+*/
+gtfsFetcher.stop();
+/**
+ * function start
+ * pour demarer le polling du fichier gtfs-rt
+*/
+gtfsFetcher.start(); // dans () vous pouvez mettre le temp que que vous voulez que ca refresh le fichier, par defaut cest 30sec
 ```
