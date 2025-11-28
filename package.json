@@ -19,19 +19,24 @@
   "license": "MIT",
   "author": "titoinemb",
   "types": "gtfsrt-lille.d.ts",
-  "main": "./dist/index.js",
+  "main": "./dist/cjs/index.js",
+  "exports": {
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
+  },
   "type": "module",
   "scripts": {
     "link": "npm link gtfsrt-lille",
     "unlink": "npm unlink gtfsrt-lille",
-    "build": "tsc && terser ./dist/index.js -o ./dist/index.js --compress --mangle"
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json"
   },
   "dependencies": {
     "gtfs-realtime-bindings": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
-    "terser": "^5.44.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
