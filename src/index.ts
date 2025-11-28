@@ -85,14 +85,23 @@ export function ToRealTime(time: number) {
 };
 
 /**
- * avec l'api officiel du gouv permet de transformer un id en un nom
+ * avec l'api officiel du gouv permet de recuperer les informations de une station avec son id
  * @param id l'id de la station
  * @return le nom de une station ou une erreur
  */
-export function IdToStationName(id: number) {
+export async function IdToStationInfo(id: string) {
   try {
+    let response = await fetch("https://data.lillemetropole.fr/data/ogcapi/collections/ilevia:arret_point/items?f=json&limit=-1");
 
+    if (!response.ok) {
+      throw new Error(`Erreur: ${response.status} ${response.statusText}`);
+    };
+
+    let responseJson: any     = await response.json();
+    let listStops: Info[]     = await responseJson.records;
+
+    return await listStops.find(stop => stop.stop_id === id);
   } catch(error) {
-    throw(error);
+    throw new Error(`Erreur: ${error}`);
   };
 };

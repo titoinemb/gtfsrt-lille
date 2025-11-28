@@ -28,6 +28,20 @@ type Item = {
   };
 };
 
+type Info = {
+  "@id": string;
+  stop_id: string;
+  stop_name: string;
+  stop_desc: string;
+  x: number;
+  y: number;
+  zone_id: string;
+  location_type: string;
+  parent_station: string;
+  wheelchair_boarding: string;
+  commune: string;
+};
+
 declare module 'gtfsrt-lille' {
   /**
    * permet de recuperer en temp reel tout les deviation, retard etc en temp reel
@@ -67,5 +81,5 @@ declare module 'gtfsrt-lille' {
    * @param id l'id de la station
    * @return le nom de une station ou une erreur
    */
-  export function IdToStationName(id: number): string;
+  export function IdToStationInfo(id: string): any;
 };
