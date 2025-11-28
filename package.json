@@ -18,16 +18,19 @@
   },
   "license": "MIT",
   "author": "titoinemb",
-  "types": "gtfsrt-lille.d.ts",
+  "types": "./gtfsrt-lille.d.ts",
   "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "exports": {
-    "require": "./dist/cjs/index.js",
-    "import": "./dist/esm/index.js"
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "types": "./gtfsrt-lille.d.ts"
+    }
   },
-  "type": "module",
   "scripts": {
-    "link": "npm link gtfsrt-lille",
-    "unlink": "npm unlink gtfsrt-lille",
+    "link": "npm link",
+    "unlink": "npm unlink",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --project tsconfig.esm.json",
     "build:cjs": "tsc --project tsconfig.cjs.json"
