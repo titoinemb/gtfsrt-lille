@@ -68,3 +68,16 @@ gtfsFetcher.stop();
 */
 gtfsFetcher.start(); // dans () vous pouvez mettre le temp que que vous voulez que ca refresh le fichier, par defaut cest 30sec
 ```
+### utilisation de **IdToStationInfo**
+```ts
+(async () => {
+  /**
+   * doit etre dans une function avec async si non ca return Promise 
+  */
+  console.log(await IdToStationInfo("stopId")); // dans () l'id de la station
+})();
+```
+### utilisation de **ToRealTime**
+```ts
+ToRealTime(1638316800);// dans () doit etre une date en timestamp en seconde
+```
